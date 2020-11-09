@@ -24,22 +24,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Routes',
-      style: optionStyle,
-    ),
-    Text(
-      'Statistics',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    RunPage(),
+    RoutePage(),
+    StatisticsPage(),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -51,13 +39,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Pacey',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.white,
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
