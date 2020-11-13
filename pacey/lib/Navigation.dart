@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import './RunPage.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({Key key}) : super(key: key);
@@ -10,29 +12,8 @@ class Navigation extends StatefulWidget {
 /// This is the private State class that goes with Navigation.
 class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    // RunPage(),
-    // RoutesPage(),
-    // StatisticsPage(),
-    // ProfilePage(),
-    Text(
-      'RunPage',
-      style: optionStyle,
-    ),
-    Text(
-      'RoutesPage',
-      style: optionStyle,
-    ),
-    Text(
-      'StatisticsPage',
-      style: optionStyle,
-    ),
-    Text(
-      'ProfilePage',
-      style: optionStyle,
-    ),
+  final List<Widget> _widgetOptions = <Widget>[
+    RunPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -43,10 +24,9 @@ class _NavigationState extends State<Navigation> {
 
   @override
   Widget build(BuildContext context) {
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
