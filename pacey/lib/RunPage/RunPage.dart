@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './RunningStopwatch.dart';
 
 class RunPage extends StatelessWidget {
   const RunPage({Key key}) : super(key: key);
@@ -22,17 +23,13 @@ class RunPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
+              RunningStopwatch(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // Stopwatch(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('Dst'),
-                      Text('Cal'),
-                      Text('Spd'),
-                    ],
-                  ),
+                  Text('Dst'),
+                  Text('Cal'),
+                  Text('Spd'),
                 ],
               ),
               Column(

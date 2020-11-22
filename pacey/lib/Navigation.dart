@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import './RunPage.dart';
+import './RunPage/RunPage.dart';
+import './RoutesPage.dart';
+import './StatisticsPage.dart';
+import './ProfilePage.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({Key key}) : super(key: key);
@@ -14,6 +17,9 @@ class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     RunPage(),
+    RoutesPage(),
+    StatisticsPage(),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
