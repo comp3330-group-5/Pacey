@@ -8,38 +8,30 @@ class RunPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'pacey',
-            style: GoogleFonts.raleway(
-              textStyle: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 36,
-                color: Colors.black87,
-              ),
+      appBar: AppBar(
+        title: Text(
+          'pacey',
+          style: GoogleFonts.raleway(
+            textStyle: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 36,
+              color: Colors.black87,
             ),
           ),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RunningStopwatch(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('Dst'),
-                  Text('Cal'),
-                  Text('Spd'),
-                ],
-              ),
-              Column(
-                children: [],
-              ),
-            ],
-          ),
-        ));
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Center(
+              child: RunningStopwatch(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
