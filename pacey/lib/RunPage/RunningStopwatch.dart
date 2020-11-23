@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 
 class RunningStopwatch extends StatefulWidget {
@@ -12,51 +13,94 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
 
   String elapsedTime = '00:00:00';
 
+  int _selectedIndex = 0;
+  void setTimerButton(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> _timerButtons = [
+      RaisedButton(
+        color: Colors.green,
+        elevation: 10.0,
+        onPressed: () {
+          startWatch();
+          setTimerButton(1);
+        },
+        child: Icon(Icons.play_arrow, color: Colors.white),
+      ),
+      RaisedButton(
+        color: Colors.red,
+        elevation: 5.0,
+        onPressed: () {
+          stopWatch();
+          setTimerButton(2);
+        },
+        child: Icon(Icons.pause_outlined, color: Colors.white),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RaisedButton(
+            color: Colors.green,
+            elevation: 5.0,
+            onPressed: () {
+              startWatch();
+              setTimerButton(1);
+            },
+            child: Icon(Icons.play_arrow, color: Colors.white),
+          ),
+          SizedBox(width: 20),
+          RaisedButton(
+            color: Colors.blue,
+            elevation: 5.0,
+            onPressed: () {
+              resetWatch();
+              setTimerButton(0);
+            },
+            child: Icon(Icons.refresh, color: Colors.white),
+          ),
+        ],
+      )
+    ];
+    return Container(
+      margin: EdgeInsets.all(20.0),
+      child: Column(
+        children: <Widget>[
+          Text(
+            elapsedTime,
+            style: GoogleFonts.openSans(
+              textStyle: TextStyle(
+                fontSize: 72,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          Text(
+            'Duration',
+            style: GoogleFonts.openSans(
+              textStyle: TextStyle(
+                fontSize: 18,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          SizedBox(height: 20.0),
+          _timerButtons.elementAt(_selectedIndex),
+        ],
+      ),
+    );
+  }
+
   updateTime(Timer timer) {
     if (watch.isRunning) {
       setState(() {
         elapsedTime = transformMilliSeconds(watch.elapsedMilliseconds);
       });
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            elapsedTime,
-            style: TextStyle(
-              fontFamily: 'Raleway',
-              fontSize: 64,
-              color: Colors.black87,
-            ),
-          ),
-          SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FloatingActionButton(
-                  backgroundColor: Colors.green,
-                  onPressed: startWatch,
-                  child: Icon(Icons.play_arrow)),
-              SizedBox(width: 20.0),
-              FloatingActionButton(
-                  backgroundColor: Colors.red,
-                  onPressed: stopWatch,
-                  child: Icon(Icons.stop)),
-              SizedBox(width: 20.0),
-              FloatingActionButton(
-                  backgroundColor: Colors.blue,
-                  onPressed: resetWatch,
-                  child: Icon(Icons.refresh)),
-            ],
-          )
-        ],
-      ),
-    );
   }
 
   startWatch() {
@@ -87,10 +131,14 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
     int minutes = (seconds / 60).truncate();
     int hours = (minutes / 60).truncate();
 
+    String hundredsStr = (hundreds % 100).toString().padLeft(2, '0');
     String minutesStr = (minutes % 60).toString().padLeft(2, '0');
     String secondsStr = (seconds % 60).toString().padLeft(2, '0');
     String hoursStr = (hours % 60).toString().padLeft(2, '0');
 
-    return "$hoursStr:$minutesStr:$secondsStr";
+    if (hours < 1)
+      return "$minutesStr:$secondsStr.$hundredsStr";
+    else
+      return "$hoursStr:$minutesStr:$secondsStr";
   }
 }

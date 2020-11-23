@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import './RunningStopwatch.dart';
 
 class RunPage extends StatelessWidget {
@@ -10,10 +11,12 @@ class RunPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             'pacey',
-            style: TextStyle(
-              fontFamily: 'Raleway',
-              fontSize: 36,
-              color: Colors.black87,
+            style: GoogleFonts.raleway(
+              textStyle: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 36,
+                color: Colors.black87,
+              ),
             ),
           ),
           backgroundColor: Colors.transparent,
