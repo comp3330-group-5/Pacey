@@ -38,7 +38,7 @@ class _NavigationState extends State<Navigation> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.sports),
-            label: 'Run lei lomo',
+            label: 'Run',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
