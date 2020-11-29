@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './RunningStopwatch.dart';
+import './RunningMap.dart';
 
 class RunPage extends StatelessWidget {
   const RunPage({Key key}) : super(key: key);
@@ -28,6 +29,10 @@ class RunPage extends StatelessWidget {
           children: [
             Center(
               child: RunningStopwatch(),
+            ),
+            Container(
+              height: 300,
+              child: RunningMap(),
             ),
           ],
         ),
