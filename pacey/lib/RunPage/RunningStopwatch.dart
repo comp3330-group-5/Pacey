@@ -23,9 +23,32 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _timerButtons = [
+      ButtonTheme(
+        // minWidth: 100,
+        // height: 20,
+        child: RaisedButton(
+          color: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18.0),
+          ),
+
+          elevation: 5.0,
+          onPressed: () {
+            startWatch();
+            setTimerButton(1);
+          },
+          // child: Icon(Icons.play_arrow, color: Colors.white),
+          child: Text(
+            'Start',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+        ),
+      ),
       RaisedButton(
         color: Colors.green,
-        elevation: 10.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+        elevation: 5.0,
         onPressed: () {
           startWatch();
           setTimerButton(1);
