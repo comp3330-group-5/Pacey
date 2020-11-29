@@ -14,7 +14,7 @@ class RunPage extends StatelessWidget {
           style: GoogleFonts.raleway(
             textStyle: TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 36,
+              fontSize: 34,
               color: Colors.black87,
             ),
           ),

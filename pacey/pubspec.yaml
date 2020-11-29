@@ -32,9 +32,9 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3
 
   google_maps_flutter: ^1.0.6
-  
 
   google_fonts: ^1.1.1
+
 
 dev_dependencies:
   flutter_test:

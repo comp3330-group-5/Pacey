@@ -23,27 +23,7 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _timerButtons = [
-      ButtonTheme(
-        // minWidth: 100,
-        // height: 20,
-        child: RaisedButton(
-          color: Colors.green,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
-          ),
-
-          elevation: 5.0,
-          onPressed: () {
-            startWatch();
-            setTimerButton(1);
-          },
-          // child: Icon(Icons.play_arrow, color: Colors.white),
-          child: Text(
-            'Start',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ),
-      ),
+      // start button
       RaisedButton(
         color: Colors.green,
         shape:
@@ -55,8 +35,11 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
         },
         child: Icon(Icons.play_arrow, color: Colors.white),
       ),
+      // stop button
       RaisedButton(
         color: Colors.red,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
         elevation: 5.0,
         onPressed: () {
           stopWatch();
@@ -64,11 +47,14 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
         },
         child: Icon(Icons.pause_outlined, color: Colors.white),
       ),
+      // resume button and restart button
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RaisedButton(
             color: Colors.green,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0)),
             elevation: 5.0,
             onPressed: () {
               startWatch();
@@ -79,6 +65,8 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
           SizedBox(width: 20),
           RaisedButton(
             color: Colors.blue,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0)),
             elevation: 5.0,
             onPressed: () {
               resetWatch();
