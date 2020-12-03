@@ -23,19 +23,18 @@ class RunPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-              child: RunningStopwatch(),
-            ),
-            Container(
-              height: 300,
-              child: RunningMap(),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 3,
+            child: RunningStopwatch(),
+          ),
+          Flexible(
+            flex: 5,
+            child: RunningMap(),
+          ),
+        ],
       ),
     );
   }

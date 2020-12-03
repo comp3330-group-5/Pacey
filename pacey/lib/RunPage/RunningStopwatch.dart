@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 
+import 'package:pacey/Navigation.dart';
+
 class RunningStopwatch extends StatefulWidget {
   @override
   _RunningStopwatchState createState() => _RunningStopwatchState();
@@ -10,10 +12,9 @@ class RunningStopwatch extends StatefulWidget {
 class _RunningStopwatchState extends State<RunningStopwatch> {
   Stopwatch watch = Stopwatch();
   Timer timer;
-
   String elapsedTime = '00:00:00';
-
   int _selectedIndex = 0;
+
   void setTimerButton(int index) {
     setState(() {
       _selectedIndex = index;
