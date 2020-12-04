@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pacey/HomePage.dart';
+import '../Navigation.dart';
 import './RunningStopwatch.dart';
 import './RunningMap.dart';
 
@@ -10,18 +12,33 @@ class RunPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
         title: Text(
-          'pacey',
-          style: GoogleFonts.raleway(
+          'Stopwatch',
+          style: GoogleFonts.roboto(
             textStyle: TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 34,
-              color: Colors.black87,
+              fontSize: 28,
+              color: Colors.black,
             ),
           ),
         ),
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        // leading: BackButton(
+        //   color: Colors.black,
+        // ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => Navigation()),
+            );
+          },
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +48,7 @@ class RunPage extends StatelessWidget {
             child: RunningStopwatch(),
           ),
           Flexible(
-            flex: 5,
+            flex: 7,
             child: RunningMap(),
           ),
         ],

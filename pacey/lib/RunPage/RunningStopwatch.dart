@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pacey/Navigation.dart';
 import 'dart:async';
 
-import 'package:pacey/Navigation.dart';
+import '../HomePage.dart';
 
 class RunningStopwatch extends StatefulWidget {
   @override
@@ -65,15 +66,21 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
           ),
           SizedBox(width: 20),
           RaisedButton(
-            color: Colors.blue,
+            color: Colors.red,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0)),
             elevation: 5.0,
             onPressed: () {
               resetWatch();
               setTimerButton(0);
+              Navigator.pop(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Navigation(),
+                ),
+              );
             },
-            child: Icon(Icons.refresh, color: Colors.white),
+            child: Icon(Icons.stop, color: Colors.white),
           ),
         ],
       )
@@ -86,7 +93,7 @@ class _RunningStopwatchState extends State<RunningStopwatch> {
             elapsedTime,
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
-                fontSize: 72,
+                fontSize: 56,
                 color: Colors.black,
               ),
             ),
