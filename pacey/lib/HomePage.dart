@@ -73,12 +73,12 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       ButtonTheme(
-                        minWidth: 150,
-                        height: 40,
+                        minWidth: 130,
+                        height: 50,
                         child: RaisedButton(
                           color: Colors.green,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
+                              borderRadius: BorderRadius.circular(25.0)),
                           elevation: 5.0,
                           onPressed: () {
                             Navigator.push(
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                             children: [
                               // Icon(Icons.play_arrow, color: Colors.white),
                               Text(
-                                'START RUNNING',
+                                'RUN NOW',
                                 style: GoogleFonts.roboto(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
