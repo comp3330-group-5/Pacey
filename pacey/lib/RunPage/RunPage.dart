@@ -18,7 +18,6 @@ class _RunPageState extends State<RunPage> {
   String elapsedTime = '00:00:00';
   bool _started = false;
   bool _running = false;
-  int _selectedIndex = 0;
 
   void setStarted(bool started) {
     setState(() {
