@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       ButtonTheme(
-                        minWidth: 100,
+                        minWidth: 150,
                         height: 40,
                         child: RaisedButton(
                           color: Colors.green,

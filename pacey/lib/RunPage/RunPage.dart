@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pacey/HomePage.dart';
 import '../Navigation.dart';
 import './RunningStopwatch.dart';
 import './RunningMap.dart';
@@ -24,9 +23,6 @@ class RunPage extends StatelessWidget {
             ),
           ),
         ),
-        // leading: BackButton(
-        //   color: Colors.black,
-        // ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_rounded,
@@ -44,11 +40,11 @@ class RunPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-            flex: 3,
+            flex: 2,
             child: RunningStopwatch(),
           ),
           Flexible(
-            flex: 7,
+            flex: 6,
             child: RunningMap(),
           ),
         ],
