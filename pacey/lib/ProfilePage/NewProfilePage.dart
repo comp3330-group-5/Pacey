@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../Navigation.dart';
 
@@ -164,8 +165,6 @@ class _NewProfilePageState extends State<NewProfilePage> {
                 fillForm('gender', 'female');
               }
               _profileKey.currentState.save();
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setInt('isNewUser', 1);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Navigation()));
             }
