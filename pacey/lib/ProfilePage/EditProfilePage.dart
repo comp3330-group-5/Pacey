@@ -11,6 +11,39 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   bool _maleSelected = false;
   bool _femaleSelected = false;
+  String _username, _gender, _age, _weight, _height;
+  // TextEditingController _username = TextEditingController();
+
+  Future<void> fillForm(String key, String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
+  }
+
+  Future<void> retrieveForm() async {
+    final prefs = await SharedPreferences.getInstance();
+    String username = prefs.getString('name');
+    String gender = prefs.getString('gender');
+    String age = prefs.getString('age');
+    String weight = prefs.getString('weight');
+    String height = prefs.getString('height');
+
+    setState(() {
+      _username = username;
+      _gender = gender;
+      if (_gender == 'male') _maleSelected = true;
+      if (_gender == 'female') _femaleSelected = true;
+      _age = age;
+      _weight = weight;
+      _height = height;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    retrieveForm();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +59,43 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
         ),
-        leading: BackButton(color: Colors.black87),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: Colors.black87,
+          ),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                title: Text('Discard Changes?'),
+                actions: [
+                  FlatButton(
+                    child: Text('Yes'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pop(context);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text(
+                      'No',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0)),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+                elevation: 24,
+                backgroundColor: Colors.white,
+              ),
+            );
+          },
+        ),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
