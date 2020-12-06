@@ -216,13 +216,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             if (_profileKey.currentState.validate()) {
               if (_maleSelected) {
                 fillForm('gender', 'male');
-                _profileKey.currentState.save();
-                Navigator.pop(context);
               } else if (_femaleSelected) {
                 fillForm('gender', 'female');
-                _profileKey.currentState.save();
-                Navigator.pop(context);
               }
+              _profileKey.currentState.save();
+              Navigator.pop(context);
             }
           },
           label: Text('Save'),
