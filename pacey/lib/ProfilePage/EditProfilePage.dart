@@ -34,6 +34,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     setState(() {
       _username = username;
       _gender = gender;
+      if (_gender == 'male') _maleSelected = true;
+      if (_gender == 'female') _femaleSelected = true;
       _age = age;
       _weight = weight;
       _height = height;
@@ -71,29 +73,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
             showDialog(
               context: context,
               builder: (_) => AlertDialog(
-                title: Text('Save Changes?'),
+                title: Text('Discard Changes?'),
                 actions: [
                   FlatButton(
-                    child: Text('Discard changes'),
+                    child: Text('Yes'),
                     onPressed: () {
-                      // Navigator.pop(context);
-                      // Navigator.pop(context);
                       Navigator.of(context).pop();
-                      Navigator.of(context).pop();
+                      Navigator.pop(context);
                     },
                   ),
                   FlatButton(
                     child: Text(
-                      'Save',
+                      'No',
                       style: TextStyle(color: Colors.white),
                     ),
                     color: Colors.blue,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0)),
                     onPressed: () {
-                      _profileKey.currentState.save();
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],
