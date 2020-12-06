@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import './RoutesPage.dart';
 import './StatisticsPage.dart';
-import './ProfilePage/ProfilePage.dart';
+import './ProfilePage.dart';
 import 'HomePage.dart';
 
 class Navigation extends StatefulWidget {

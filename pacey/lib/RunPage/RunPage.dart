@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../HomePage.dart';
 import '../Navigation.dart';
 
 class RunPage extends StatefulWidget {
@@ -99,7 +98,7 @@ class _RunPageState extends State<RunPage> {
             setStarted(true);
             setRunning(true);
           },
-          label: Text('START'),
+          label: Text('Start'),
           icon: Icon(Icons.play_arrow),
           backgroundColor: Colors.green,
         ),
@@ -112,7 +111,7 @@ class _RunPageState extends State<RunPage> {
             stopWatch();
             setRunning(false);
           },
-          label: Text('PAUSE'),
+          label: Text('Pause'),
           icon: Icon(Icons.pause_outlined),
           backgroundColor: Colors.green,
         ),
@@ -126,7 +125,7 @@ class _RunPageState extends State<RunPage> {
             setStarted(true);
             setRunning(true);
           },
-          label: Text('RESUME'),
+          label: Text('Resume'),
           icon: Icon(Icons.play_arrow),
           backgroundColor: Colors.green,
         ),
@@ -137,13 +136,16 @@ class _RunPageState extends State<RunPage> {
         child: FloatingActionButton.extended(
           onPressed: () {
             stopWatch();
-            setRunning(false);
-            setStarted(false);
+            // setStarted(true);
+            // setRunning(true);
             Navigator.pop(
               context,
+              MaterialPageRoute(
+                builder: (context) => Navigation(),
+              ),
             );
           },
-          label: Text('STOP'),
+          label: Text('Stop'),
           icon: Icon(Icons.stop),
           backgroundColor: Colors.red,
         ),
@@ -158,7 +160,7 @@ class _RunPageState extends State<RunPage> {
           style: GoogleFonts.roboto(
             textStyle: TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 24,
+              fontSize: 28,
               color: Colors.black,
             ),
           ),
@@ -169,34 +171,10 @@ class _RunPageState extends State<RunPage> {
             color: Colors.black,
           ),
           onPressed: () {
-            if (_started) {
-              if (_running) {
-                setRunning(false);
-                stopWatch();
-              }
-              showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: Text('Running in Progress!'),
-                  content: Text('Please end this running session to leave'),
-                  actions: [
-                    FlatButton(
-                      child: Text('Okay'),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                  elevation: 24,
-                  backgroundColor: Colors.white,
-                ),
-              );
-            } else {
-              Navigator.pop(
-                context,
-                MaterialPageRoute(builder: (context) => Navigation()),
-              );
-            }
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => Navigation()),
+            );
           },
         ),
       ),
@@ -206,7 +184,6 @@ class _RunPageState extends State<RunPage> {
             Flexible(
               flex: 2,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     elapsedTime,
