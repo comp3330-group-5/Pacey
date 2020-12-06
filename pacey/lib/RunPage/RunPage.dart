@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../Navigation.dart';
+import 'RunningMap.dart';
 
 class RunPage extends StatefulWidget {
   const RunPage({Key key}) : super(key: key);
@@ -137,8 +138,8 @@ class _RunPageState extends State<RunPage> {
         child: FloatingActionButton.extended(
           onPressed: () {
             stopWatch();
-            // setStarted(true);
-            // setRunning(true);
+            setStarted(false);
+            setRunning(false);
             Navigator.pop(
               context,
               MaterialPageRoute(
@@ -248,13 +249,7 @@ class _RunPageState extends State<RunPage> {
             ),
             Flexible(
               flex: 8,
-              child: GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: _kGooglePlex,
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
-              ),
+              child: RunningMap(),
             ),
           ],
         ),
