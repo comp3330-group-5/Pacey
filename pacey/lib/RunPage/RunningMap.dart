@@ -43,18 +43,11 @@ class _RunningMapState extends State<RunningMap> {
         },
         markers: _markers,
       ),
-<<<<<<< Updated upstream
       // floatingActionButton: FloatingActionButton.extended(
       //   onPressed: _goToTheLake,
       //   label: Text('To the lake!'),
       //   icon: Icon(Icons.directions_boat),
       // ),
-=======
-      floatingActionButton: FloatingActionButton(
-        onPressed: _goToTheLake,
-        child: Icon(Icons.location_searching),
-      ),
->>>>>>> Stashed changes
     );
   }
 

@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
+
 import '../Navigation.dart';
->>>>>>> d6b67304f818860d95a8ba4131c408d91225a0b4
 
 class RunPage extends StatefulWidget {
   const RunPage({Key key}) : super(key: key);
@@ -177,9 +172,6 @@ class _RunPageState extends State<RunPage> {
             color: Colors.black,
           ),
           onPressed: () {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
             if (_started) {
               if (_running) {
                 setRunning(false);
@@ -223,16 +215,6 @@ class _RunPageState extends State<RunPage> {
             } else {
               Navigator.pop(context);
             }
-=======
->>>>>>> Stashed changes
-            Navigator.pop(
-              context,
-              MaterialPageRoute(builder: (context) => Navigation()),
-            );
-<<<<<<< Updated upstream
-=======
->>>>>>> d6b67304f818860d95a8ba4131c408d91225a0b4
->>>>>>> Stashed changes
           },
         ),
       ),
