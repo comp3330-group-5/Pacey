@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        //crossAxisAlignment: CrossAxisAlignment.baseline,
                         children: [
                           Text(
                             _totalDistance,
