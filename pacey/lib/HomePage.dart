@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-            flex: 4,
+            flex: 3,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
