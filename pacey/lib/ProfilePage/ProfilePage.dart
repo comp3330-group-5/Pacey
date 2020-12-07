@@ -142,7 +142,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       Text(
                         '$_age',
@@ -184,7 +183,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       Text(
                         '$_weight',
@@ -225,7 +223,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       Text(
                         '$_height',
