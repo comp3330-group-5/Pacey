@@ -105,7 +105,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         key: _profileKey,
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: Column(
+          child: ListView(
             children: [
               TextFormField(
                 autofocus: true,

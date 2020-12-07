@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqflite.dart';
-
 import '../Navigation.dart';
 
 class NewProfilePage extends StatefulWidget {
@@ -44,8 +42,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
         key: _profileKey,
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               Text(
                 'Please provide your information below before we start:',
