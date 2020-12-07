@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Flexible(
-            flex: 7,
+            flex: 6,
             child: RunningMap(),
           ),
         ],
