@@ -25,12 +25,6 @@ class _RoutesState extends State<RoutesPage> {
   PolylinePoints polylinePoints = PolylinePoints();
   Set<Polyline> _polylines = {};
   List<LatLng> polylineCoordinates = [];
-
-  static final CameraPosition _initialLocation = CameraPosition(
-    target: LatLng(22.2688, 114.1299),
-    zoom: 14,
-  );
-  //distance:
   double distanceInMeters;
 
   Future<void> retrieveForm() async {
@@ -51,7 +45,10 @@ class _RoutesState extends State<RoutesPage> {
     return new Scaffold(
       body: GoogleMap(
           mapType: MapType.normal,
-          initialCameraPosition: _initialLocation,
+          initialCameraPosition: CameraPosition(
+            target: LatLng(22.2688, 114.1299),
+            zoom: 14,
+          ),
           markers: Set.from(myMarker),
           onTap: _handleTap,
           polylines: _polylines,
