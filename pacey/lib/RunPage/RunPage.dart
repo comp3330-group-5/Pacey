@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:intl/intl.dart';
 import '../Database.dart';
 import '../Navigation.dart';
 
@@ -22,6 +22,14 @@ class _RunPageState extends State<RunPage> {
   String elapsedTime = '00:00:00';
   bool _started = false;
   bool _running = false;
+  int _weight;
+
+  Future<void> getWeight() async {
+    var profile = await dbHelper.getProfile();
+    setState(() {
+      _weight = profile[0]['weight'];
+    });
+  }
 
   void setStarted(bool started) {
     setState(() {
@@ -143,9 +151,11 @@ class _RunPageState extends State<RunPage> {
             // setStarted(true);
             // setRunning(true);
             Map<String, dynamic> run = {
-              DatabaseHelper.runDate: DateTime.now().toString(),
+              DatabaseHelper.runDate: DateFormat('yyyy-MM-dd  kk:mm').format(DateTime.now()),
               DatabaseHelper.runDistance: '100',
               DatabaseHelper.runDuration: elapsedTime,
+              DatabaseHelper.runSpeed: 100/watch.elapsedMilliseconds/1000/60/60,
+              DatabaseHelper.runConsumed: 100 * _weight * 1.036
             };
             await dbHelper.insertRun(run);
 

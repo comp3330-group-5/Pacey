@@ -13,6 +13,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   DateTime selectedDate = DateTime.now();
   String _username, _gender, _age, _weight, _height;
+  // reference to our single class that manages the database
+  final dbHelper = DatabaseHelper.instance;
 
   Future<void> retrieveForm() async {
     // ignore: unnecessary_statements
@@ -25,8 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
     String height = prefs.getString('height');
     ''';
 
-    // reference to our single class that manages the database
-    final dbHelper = DatabaseHelper.instance;
     final profile = await dbHelper.getProfile();
 
     String username = profile['name'];
