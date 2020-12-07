@@ -72,14 +72,10 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20),
-                      ButtonTheme(
-                        minWidth: 130,
+                      Container(
+                        width: 130,
                         height: 50,
-                        child: RaisedButton(
-                          color: Colors.green,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25.0)),
-                          elevation: 5.0,
+                        child: FloatingActionButton.extended(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -88,20 +84,15 @@ class HomePage extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              // Icon(Icons.play_arrow, color: Colors.white),
-                              Text(
-                                'RUN NOW',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                          label: Text(
+                            'RUN NOW',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
+                          backgroundColor: Colors.green,
                         ),
                       ),
                     ],
