@@ -24,7 +24,7 @@ class _RoutesState extends State<RoutesPage> {
   PolylinePoints polylinePoints;
   List<LatLng> polylineCoordinates = [];
   Map<PolylineId, Polyline> polylines = {};
-  CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
+  CameraPosition _initialLocation;
 
   Future<void> retrieveForm() async {
     final geo.Position currentPostition =
@@ -55,13 +55,18 @@ class _RoutesState extends State<RoutesPage> {
         polylines: Set<Polyline>.of(polylines.values),
         onMapCreated: (GoogleMapController controller) {
           _controller = controller;
-
+          _controller
+              .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+            target:
+                LatLng(_currentPosition.latitude, _currentPosition.longitude),
+            zoom: 14,
+          )));
           setState(() {
             myMarker = [];
             myMarker.add(
               Marker(
                 markerId: MarkerId("0"),
-                position: LatLng(_currentPosition.latitude + 0.005,
+                position: LatLng(_currentPosition.latitude + 0.001,
                     _currentPosition.longitude),
                 infoWindow: InfoWindow(
                     title: "Starting Point", snippet: "An good place"),
