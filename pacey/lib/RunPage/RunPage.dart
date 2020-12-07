@@ -148,25 +148,20 @@ class _RunPageState extends State<RunPage> {
         child: FloatingActionButton.extended(
           onPressed: () async {
             stopWatch();
-            // setStarted(true);
-            // setRunning(true);
+            setStarted(false);
+            setRunning(false);
             Map<String, dynamic> run = {
-              DatabaseHelper.runDate: DateFormat('yyyy-MM-dd  kk:mm').format(DateTime.now()),
-              DatabaseHelper.runDistance: '100',
+              DatabaseHelper.runDate:
+                  DateFormat('yyyy-MM-dd  kk:mm').format(DateTime.now()),
+              DatabaseHelper.runDistance: 100,
               DatabaseHelper.runDuration: elapsedTime,
-              DatabaseHelper.runSpeed: 100/watch.elapsedMilliseconds/1000/60/60,
+              DatabaseHelper.runSpeed:
+                  100 / watch.elapsedMilliseconds / 1000 / 60 / 60,
               DatabaseHelper.runConsumed: 100 * _weight * 1.036
             };
             await dbHelper.insertRun(run);
-
             Navigator.pop(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Navigation(),
-              ),
-            );
-
-
+                context, MaterialPageRoute(builder: (context) => Navigation()));
           },
           label: Text('Stop'),
           icon: Icon(Icons.stop),
