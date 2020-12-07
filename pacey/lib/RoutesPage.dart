@@ -25,9 +25,13 @@ class _RoutesState extends State<RoutesPage> {
   PolylinePoints polylinePoints = PolylinePoints();
   Set<Polyline> _polylines = {};
   List<LatLng> polylineCoordinates = [];
+
   double distanceInMeters;
 
-  Future<void> retrieveForm() async {
+  Map<PolylineId, Polyline> polylines = {};
+  //CameraPosition _initialLocation;
+
+  /*Future<void> retrieveForm() async {
     final geo.Position currentPostition =
         await geo.Geolocator.getCurrentPosition(
             desiredAccuracy: geo.LocationAccuracy.high);
@@ -38,9 +42,10 @@ class _RoutesState extends State<RoutesPage> {
       _currentPosition = currentPostition;
       this._dest_Position = destPosition;
     });
-  }
+  }*/
 
   @override
+
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
@@ -69,10 +74,28 @@ class _RoutesState extends State<RoutesPage> {
           _getCurrentLocation();
           setMapPins();
           setPolylines();
+
+  void initState() {
+    super.initState();
+    //retrieveForm();
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: GoogleMap(
+        mapType: MapType.hybrid,
+        initialCameraPosition: CameraPosition(target: LatLng(0,0)),
+        markers: Set.from(myMarker),
+        onTap: _handleTap,
+        polylines: Set<Polyline>.of(polylines.values),
+        onMapCreated: (GoogleMapController controller) {
+          _initialLocation:CameraPosition(target:LatLng(0,0));
+          _controller = controller;
+
           _controller
               .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
             target:
-                LatLng(_currentPosition.latitude, _currentPosition.longitude),
+                  LatLng(0.0, 0.0),
             zoom: 14,
           )));
           setMapPins();
