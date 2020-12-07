@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../Database.dart';
 import 'EditProfilePage.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -15,12 +15,25 @@ class _ProfilePageState extends State<ProfilePage> {
   String _username, _gender, _age, _weight, _height;
 
   Future<void> retrieveForm() async {
+    // ignore: unnecessary_statements
+    '''
     final prefs = await SharedPreferences.getInstance();
-    final String username = prefs.getString('name');
-    final String gender = prefs.getString('gender');
-    final String age = prefs.getString('age');
-    final String weight = prefs.getString('weight');
-    final String height = prefs.getString('height');
+    String username = prefs.getString('name');
+    String gender = prefs.getString('gender');
+    String age = prefs.getString('age');
+    String weight = prefs.getString('weight');
+    String height = prefs.getString('height');
+    ''';
+
+    // reference to our single class that manages the database
+    final dbHelper = DatabaseHelper.instance;
+    final profile = await dbHelper.getProfile();
+
+    String username = profile['name'];
+    String gender = profile['gender'];
+    String age = profile['age'];
+    String weight = profile['weight'];
+    String height = profile['height'];
 
     setState(() {
       _username = username;
@@ -29,12 +42,6 @@ class _ProfilePageState extends State<ProfilePage> {
       _weight = weight;
       _height = height;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    retrieveForm();
   }
 
   @override

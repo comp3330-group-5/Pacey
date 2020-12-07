@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pacey/Database.dart';
+
 import '../Navigation.dart';
 
 class NewProfilePage extends StatefulWidget {
@@ -14,6 +16,9 @@ class _NewProfilePageState extends State<NewProfilePage> {
   final _profileKey = GlobalKey<FormState>();
   bool _maleSelected = false;
   bool _femaleSelected = false;
+
+  // reference to our single class that manages the database
+  final dbHelper = DatabaseHelper.instance;
 
   Future<void> fillForm(String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
@@ -42,7 +47,8 @@ class _NewProfilePageState extends State<NewProfilePage> {
         key: _profileKey,
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: ListView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Please provide your information below before we start:',
@@ -164,6 +170,23 @@ class _NewProfilePageState extends State<NewProfilePage> {
               _profileKey.currentState.save();
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Navigation()));
+
+              //Insert profile into database
+              final prefs = await SharedPreferences.getInstance();
+              String name = prefs.getString('name');
+              String gender = prefs.getString('gender');
+              String age = prefs.getString('age');
+              String weight = prefs.getString('weight');
+              String height = prefs.getString('height');
+              Map<String, dynamic> profile = {
+                DatabaseHelper.profileName: name,
+                DatabaseHelper.profileGender: gender,
+                DatabaseHelper.profileAge: age,
+                DatabaseHelper.profileWeight: weight,
+                DatabaseHelper.profileHeight: height
+              };
+              await dbHelper.insertProfile(profile);
+
             }
           },
           label: Text('Save'),

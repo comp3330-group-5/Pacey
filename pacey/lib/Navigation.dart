@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import './RoutesPage.dart';
-import './HistoryPage.dart';
+import './StatisticsPage.dart';
 import './ProfilePage/ProfilePage.dart';
 import 'HomePage.dart';
 
@@ -19,7 +19,7 @@ class _NavigationState extends State<Navigation> {
     // RunPage(),
     HomePage(),
     RoutesPage(),
-    HistoryPage(),
+    StatisticsPage(),
     ProfilePage(),
   ];
 
@@ -47,7 +47,7 @@ class _NavigationState extends State<Navigation> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.analytics),
-            label: 'History',
+            label: 'Statistics',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box),

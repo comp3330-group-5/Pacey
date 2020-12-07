@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../Database.dart';
 import '../Navigation.dart';
-import 'RunningMap.dart';
 
 class RunPage extends StatefulWidget {
   const RunPage({Key key}) : super(key: key);
@@ -14,6 +14,8 @@ class RunPage extends StatefulWidget {
 }
 
 class _RunPageState extends State<RunPage> {
+  // reference to our single class that manages the database
+  final dbHelper = DatabaseHelper.instance;
   // stopwatch component
   Stopwatch watch = Stopwatch();
   Timer timer;
@@ -136,16 +138,25 @@ class _RunPageState extends State<RunPage> {
       Container(
         width: 120,
         child: FloatingActionButton.extended(
-          onPressed: () {
+          onPressed: () async {
             stopWatch();
-            setStarted(false);
-            setRunning(false);
+            // setStarted(true);
+            // setRunning(true);
+            Map<String, dynamic> run = {
+              DatabaseHelper.runDate: DateTime.now().toString(),
+              DatabaseHelper.runDistance: '100',
+              DatabaseHelper.runTime: elapsedTime,
+            };
+            await dbHelper.insertRun(run);
+
             Navigator.pop(
               context,
               MaterialPageRoute(
                 builder: (context) => Navigation(),
               ),
             );
+
+
           },
           label: Text('Stop'),
           icon: Icon(Icons.stop),
@@ -249,7 +260,13 @@ class _RunPageState extends State<RunPage> {
             ),
             Flexible(
               flex: 8,
-              child: RunningMap(),
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              ),
             ),
           ],
         ),
