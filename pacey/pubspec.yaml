@@ -34,8 +34,6 @@ dependencies:
   flutter_polyline_points: ^0.2.4
   geolocator: ^6.1.10
   expansion_card: ^0.1.0
-  geolocator: ^6.1.10
-  flutter_polyline_points: ^0.2.4
 
 dev_dependencies:
   flutter_test:
