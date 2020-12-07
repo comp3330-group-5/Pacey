@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart' as geo;
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'dart:math' show cos, sqrt, asin;
 
-class RoutesPage extends StatelessWidget {
+class RoutesPage extends StatefulWidget {
   Completer<GoogleMapController> _controller = Completer();
 
   @override
