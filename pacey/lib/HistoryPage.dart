@@ -47,17 +47,10 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
       body: Container(
         margin: EdgeInsets.all(20),
-<<<<<<< Updated upstream
-        child: ListView.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return Column(
-=======
         child: ListView.builder(itemCount: _itemCount, itemBuilder: (context, index) {
           return Column(
             children: [
               Column(
->>>>>>> Stashed changes
                 children: [
                   Column(
                     children: [
@@ -72,36 +65,22 @@ class _HistoryPageState extends State<HistoryPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text("7/12/2020",
+                                Text(_runs[index]['date'],
                                     style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
-                                        color: Colors.black87)),
-                                SizedBox(height: 5),
-                                Text("From Kennedy Town, Praya",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black87)),
-                                SizedBox(height: 5),
-                                Text("To Des Voux W",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
                                         color: Colors.black87)),
                               ],
                             ),
                           ),
                           children: <Widget>[
-
                             Container(
                               width: 300,
                               height: 60,
                               alignment: Alignment.centerLeft,
                               margin: EdgeInsets.symmetric(horizontal: 7),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     children: [
@@ -111,7 +90,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                               fontWeight: FontWeight.w500,
                                               color: Colors.black87)),
                                       SizedBox(height: 5),
-                                      Text("00:25:00",
+                                      Text(_runs[index]['duration'],
                                           style: GoogleFonts.roboto(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -126,7 +105,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                               fontWeight: FontWeight.w500,
                                               color: Colors.black87)),
                                       SizedBox(height: 5),
-                                      Text("1000 cal",
+                                      Text(_runs[index]['consumed'].toString() + " cal",
                                           style: GoogleFonts.roboto(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -141,7 +120,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                               fontWeight: FontWeight.w500,
                                               color: Colors.black87)),
                                       SizedBox(height: 5),
-                                      Text("5 min/km",
+                                      Text(_runs[index]['speed'].toString() + " min/km",
                                           style: GoogleFonts.roboto(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -150,81 +129,14 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
-=======
-                            Text(_runs[index]['date'],
-                                style: GoogleFonts.roboto(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black87)),
-                          ],
+//>>>>>>> Stashed changes
                         ),
-                      ),
-                      children: <Widget>[
-                        Container(
-                          width: 300,
-                          height: 60,
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.symmetric(horizontal: 7),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                children: [
-                                  Text("Duration",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black87)),
-                                  SizedBox(height: 5),
-                                  Text(_runs[index]['duration'],
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black87)),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("Consumed",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black87)),
-                                  SizedBox(height: 5),
-                                  Text(_runs[index]['consumed'].toString() + " cal",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black87)),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("Avg. Speed",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black87)),
-                                  SizedBox(height: 5),
-                                  Text(_runs[index]['speed'].toString() + " min/km",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black87)),
-                                ],
-                              ),
-                            ],
-                          ),
->>>>>>> Stashed changes
-                        ),
-                      ),
-                    ],
+                      ]),
+          )],
                   ),
                   SizedBox(height: 5),
                 ],
-              );
+              )]);
             }),
       ),
     );
