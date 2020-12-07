@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:collection';
-import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart' as geo;
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'dart:math' show cos, sqrt, asin;
 
 class RunningMap extends StatefulWidget {
   @override
@@ -10,10 +12,9 @@ class RunningMap extends StatefulWidget {
 }
 
 class _RunningMapState extends State<RunningMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  GoogleMapController _controller;
   Set<Marker> _markers = HashSet<Marker>();
-  Location _locationTracker = Location();
-  StreamSubscription _locationSubscription;
+  geo.Position _currentPosition;
 
   static final CameraPosition initialLocation = CameraPosition(
     target: LatLng(22.283387, 114.136001),
@@ -23,36 +24,48 @@ class _RunningMapState extends State<RunningMap> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: initialLocation,
-        //marker
-        //circles
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-          setState(() {
-            _markers.add(Marker(
-              markerId: MarkerId("0"),
-              position: LatLng(22.283387, 114.136001),
-              infoWindow: InfoWindow(
-                title: "HKU",
-                snippet: "The greatest university",
-              ),
-            ));
-          });
-        },
-        markers: _markers,
-      ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: _goToTheLake,
-      //   label: Text('To the lake!'),
-      //   icon: Icon(Icons.directions_boat),
-      // ),
-    );
+        body: GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: initialLocation,
+          //marker
+          //circles
+          onMapCreated: (GoogleMapController controller) {
+            _controller = controller;
+            setState(() {
+              _markers.add(Marker(
+                markerId: MarkerId("0"),
+                position: LatLng(
+                    _currentPosition.latitude, _currentPosition.longitude),
+                infoWindow: InfoWindow(
+                  title: "HKU",
+                  snippet: "The greatest university",
+                ),
+              ));
+            });
+          },
+          markers: _markers,
+        ),
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.location_searching),
+            onPressed: () {
+              _getCurrentLocation();
+              _controller
+                  .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+                target: LatLng(
+                    _currentPosition.latitude, _currentPosition.longitude),
+                zoom: 14,
+              )));
+            }));
   }
 
-  // Future<void> _goToTheLake() async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  // }
+  _getCurrentLocation() async {
+    geo.Position position = await geo.Geolocator.getCurrentPosition(
+        desiredAccuracy: geo.LocationAccuracy.high);
+    _currentPosition = position;
+
+    _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
+      zoom: 14,
+    )));
+  }
 }

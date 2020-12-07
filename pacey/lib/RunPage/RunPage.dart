@@ -157,8 +157,8 @@ class _RunPageState extends State<RunPage> {
                   DateFormat('yyyy-MM-dd  kk:mm').format(DateTime.now()),
               DatabaseHelper.runDistance: 0.1,
               DatabaseHelper.runDuration: elapsedTime,
-              DatabaseHelper.runSpeed:
-              NumberFormat('###.#').format(0.1 * 1000 * 60 * 60 / watch.elapsedMilliseconds),
+              DatabaseHelper.runSpeed: NumberFormat('###.#')
+                  .format(0.1 * 1000 * 60 * 60 / watch.elapsedMilliseconds),
               DatabaseHelper.runConsumed: (100 * _weight * 1.036).toString()
             };
             await dbHelper.insertRun(run);
