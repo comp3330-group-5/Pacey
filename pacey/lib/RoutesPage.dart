@@ -24,14 +24,25 @@ class _RoutesState extends State<RoutesPage> {
   PolylinePoints polylinePoints;
   List<LatLng> polylineCoordinates = [];
   Map<PolylineId, Polyline> polylines = {};
-  //String googleAPIKey = “<YOUR_API_KEY>”;
-
   CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
+
+  Future<void> retrieveForm() async {
+    final geo.Position currentPostition =
+        await geo.Geolocator.getCurrentPosition(
+            desiredAccuracy: geo.LocationAccuracy.high);
+
+    setState(() {
+      _currentPosition = currentPostition;
+      _initialLocation = CameraPosition(
+          target:
+              LatLng(_currentPosition.latitude, _currentPosition.longitude));
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation();
+    retrieveForm();
   }
 
   Widget build(BuildContext context) {
@@ -97,16 +108,6 @@ class _RoutesState extends State<RoutesPage> {
     });
   }
 
-  void updateMarker(LocationData newLocalData /*,marker imagedata)*/) {
-    LatLng latLng = LatLng(newLocalData.latitude, newLocalData.longitude);
-    //this.setstate reset the the marker location
-  }
-
-  void getCurrentLocation() async {
-    //get the marker
-    //var location = await _locationTracker.getlocation();
-    //updateMarker
-  }
   _getCurrentLocation() async {
     geo.Position position = await geo.Geolocator.getCurrentPosition(
         desiredAccuracy: geo.LocationAccuracy.high);
