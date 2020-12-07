@@ -1,0 +1,4 @@
+#Mon Dec 07 22:02:00 CST 2020
+base.0=D\:\\OneDrive - connect.hku.hk\\Google drive\\HKU academy\\COMP 3330\\Pacey-main\\Pacey\\pacey\\google_maps_in_flutter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
