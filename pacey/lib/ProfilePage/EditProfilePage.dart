@@ -12,7 +12,6 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-
   final _profileKey = GlobalKey<FormState>();
   bool _maleSelected = false;
   bool _femaleSelected = false;
@@ -229,7 +228,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
       floatingActionButton: Container(
         child: FloatingActionButton.extended(
-          onPressed: () async{
+          onPressed: () async {
             if (_profileKey.currentState.validate()) {
               if (_maleSelected) {
                 fillForm('gender', 'male');

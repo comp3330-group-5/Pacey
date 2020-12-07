@@ -3,6 +3,7 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import './RoutesPage.dart';
 import './StatisticsPage.dart';
 import './ProfilePage/ProfilePage.dart';
+import 'HistoryPage.dart';
 import 'HomePage.dart';
 
 class Navigation extends StatefulWidget {
@@ -19,7 +20,8 @@ class _NavigationState extends State<Navigation> {
     // RunPage(),
     HomePage(),
     RoutesPage(),
-    StatisticsPage(),
+    // StatisticsPage(),
+    HistoryPage(),
     ProfilePage(),
   ];
 
