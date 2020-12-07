@@ -22,7 +22,7 @@ class DatabaseHelper {
   static final runId = '_run_id';
   static final runDate = 'date';
   static final runDistance = 'distance';
-  static final runTime = 'time';
+  static final runDuration = 'duration';
 
 
   // make this a singleton class
@@ -66,7 +66,7 @@ class DatabaseHelper {
         $runId INTEGER PRIMARY KEY,
         $runDate TEXT NOT NULL,
         $runDistance DECIMAL NOT NULL,
-        $runTime TEXT NOT NULL
+        $runDuration TEXT NOT NULL
       );
       ''');
   }
