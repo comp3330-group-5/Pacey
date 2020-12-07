@@ -27,7 +27,7 @@ class _RunPageState extends State<RunPage> {
   Future<void> getWeight() async {
     var profile = await dbHelper.getProfile();
     setState(() {
-      _weight = profile[0]['weight'];
+      _weight = int.parse(profile['weight']);
     });
   }
 
@@ -100,6 +100,7 @@ class _RunPageState extends State<RunPage> {
 
   @override
   Widget build(BuildContext context) {
+    getWeight();
     final List<Widget> _timerButtons = [
       // start button
       Container(
@@ -147,17 +148,18 @@ class _RunPageState extends State<RunPage> {
         width: 120,
         child: FloatingActionButton.extended(
           onPressed: () async {
+            getWeight();
             stopWatch();
             setStarted(false);
             setRunning(false);
             Map<String, dynamic> run = {
-              DatabaseHelper.runDate:
+              DatabaseHelper.runDate: //DateTime.now().toString(),
                   DateFormat('yyyy-MM-dd  kk:mm').format(DateTime.now()),
-              DatabaseHelper.runDistance: 100,
+              DatabaseHelper.runDistance: 0.1,
               DatabaseHelper.runDuration: elapsedTime,
               DatabaseHelper.runSpeed:
-                  100 / watch.elapsedMilliseconds / 1000 / 60 / 60,
-              DatabaseHelper.runConsumed: 100 * _weight * 1.036
+              NumberFormat('###.#').format(0.1 * 1000 * 60 * 60 / watch.elapsedMilliseconds),
+              DatabaseHelper.runConsumed: (100 * _weight * 1.036).toString()
             };
             await dbHelper.insertRun(run);
             Navigator.pop(

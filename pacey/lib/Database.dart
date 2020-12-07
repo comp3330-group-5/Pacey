@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -69,8 +70,8 @@ class DatabaseHelper {
         $runDate TEXT NOT NULL,
         $runDistance DECIMAL NOT NULL,
         $runDuration TEXT NOT NULL,
-        $runSpeed DECIMAL NOT NULL,
-        $runConsumed INTEGER NOT NULL
+        $runSpeed TEXT NOT NULL,
+        $runConsumed TEXT NOT NULL
       );
       ''');
   }
@@ -156,8 +157,8 @@ class DatabaseHelper {
     Database db = await instance.database;
     if (await this.queryRowCountRun()>0){
       var result = await db.rawQuery('SELECT SUM($runDistance) FROM $runTable');
-      print('result:' + result.toString());
-      return result[0]['SUM($runDistance)'].toString();
+      //print('result:' + result.toString());
+      return NumberFormat('#######.##').format(result[0]['SUM($runDistance)']);
     }else{
       return '0.00';
     }

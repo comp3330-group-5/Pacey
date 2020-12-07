@@ -108,9 +108,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                                   color: Colors.black87)),
                                           SizedBox(height: 5),
                                           Text(
-                                              _runs[index]['consumed']
-                                                      .toString() +
-                                                  " cal",
+                                              _runs[index]['consumed'].toString() + " cal",
                                               style: GoogleFonts.roboto(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w400,
@@ -126,8 +124,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                                   color: Colors.black87)),
                                           SizedBox(height: 5),
                                           Text(
-                                              _runs[index]['speed'].toString() +
-                                                  " min/km",
+                                              _runs[index]['speed'].toString() + " km/h",
                                               style: GoogleFonts.roboto(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w400,
