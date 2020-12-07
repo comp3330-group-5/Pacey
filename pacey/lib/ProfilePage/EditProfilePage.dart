@@ -18,7 +18,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String _username, _gender, _age, _weight, _height;
   // TextEditingController _username = TextEditingController();
 
-
   Future<void> fillForm(String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
@@ -122,7 +121,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         key: _profileKey,
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: Column(
+          child: ListView(
             children: [
               TextFormField(
                 autofocus: true,

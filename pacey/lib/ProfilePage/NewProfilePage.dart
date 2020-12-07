@@ -47,8 +47,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
         key: _profileKey,
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               Text(
                 'Please provide your information below before we start:',
@@ -186,7 +185,6 @@ class _NewProfilePageState extends State<NewProfilePage> {
                 DatabaseHelper.profileHeight: height
               };
               await dbHelper.insertProfile(profile);
-
             }
           },
           label: Text('Save'),
