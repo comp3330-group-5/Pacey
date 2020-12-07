@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:geolocator/geolocator.dart' as geo;
-import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter/services.dart';
 
 class RoutesPage extends StatefulWidget {
   RoutesPage({Key key}) : super(key: key);
@@ -14,53 +14,50 @@ class RoutesPage extends StatefulWidget {
 }
 
 class _RoutesState extends State<RoutesPage> {
-  GoogleMapController _controller;
-  String GoogleApiKeyAPIKey = "AIzaSyDPDpDWgetjL3tMcDVpEhSA47HtXBFdwdw";
+  Completer<GoogleMapController> _controller = Completer();
+  Location _locationTracker = Location();
   List<Marker> myMarker = [];
+  LatLng ini_postion = LatLng(37.42796133580664, -122.085749655962);
   //Geting the current location:
-  geo.Position _currentPosition;
+  Map<String, double> currentLocation = new Map();
+  StreamSubscription<Map<String, double>> locationSubcription;
+  Location location = new Location();
   //setting the draw route.
-  //Polyline
-  PolylinePoints polylinePoints;
+  Set<Polyline> _polylines = {};
   List<LatLng> polylineCoordinates = [];
-  Map<PolylineId, Polyline> polylines = {};
+  // which generates every polyline between start and finish
+  PolylinePoints polylinePoints = PolylinePoints();
   //String googleAPIKey = “<YOUR_API_KEY>”;
 
-  CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
+  static final CameraPosition _initialPosition = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
 
   @override
-  void initState() {
-    super.initState();
-    _getCurrentLocation();
-  }
-
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition: _initialLocation,
+        initialCameraPosition: _initialPosition,
         markers: Set.from(myMarker),
         onTap: _handleTap,
-        polylines: Set<Polyline>.of(polylines.values),
         onMapCreated: (GoogleMapController controller) {
-          _controller = controller;
+          _controller.complete(controller);
 
           setState(() {
-            myMarker = [];
             myMarker.add(
               Marker(
                 markerId: MarkerId("0"),
-                position: LatLng(_currentPosition.latitude + 0.005,
-                    _currentPosition.longitude),
+                position: ini_postion,
                 infoWindow: InfoWindow(
                     title: "Starting Point", snippet: "An good place"),
-              ),
-            );
-            myMarker.add(
-              Marker(
-                markerId: MarkerId("0"),
-                position: LatLng(
-                    _currentPosition.latitude, _currentPosition.longitude),
               ),
             );
           });
@@ -68,9 +65,7 @@ class _RoutesState extends State<RoutesPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.location_searching),
-        onPressed: () {
-          _getCurrentLocation();
-        },
+        onPressed: () {},
       ),
     );
   }
@@ -89,11 +84,10 @@ class _RoutesState extends State<RoutesPage> {
       );
       myMarker.add(Marker(
         markerId: MarkerId("0"),
-        position: LatLng(_currentPosition.latitude, _currentPosition.longitude),
+        position: ini_postion,
         infoWindow:
             InfoWindow(title: "Starting Point", snippet: "An good place"),
       ));
-      _createPolylines(_currentPosition, tappedPoint);
     });
   }
 
@@ -107,38 +101,7 @@ class _RoutesState extends State<RoutesPage> {
     //var location = await _locationTracker.getlocation();
     //updateMarker
   }
-  _getCurrentLocation() async {
-    geo.Position position = await geo.Geolocator.getCurrentPosition(
-        desiredAccuracy: geo.LocationAccuracy.high);
-    _currentPosition = position;
-    print('CURRENT POS: $_currentPosition');
-
-    _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-      target: LatLng(_currentPosition.latitude, _currentPosition.longitude),
-      zoom: 14,
-    )));
-  }
-
-  _createPolylines(geo.Position start, LatLng destination) async {
-    polylinePoints = PolylinePoints();
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      GoogleApiKeyAPIKey,
-      PointLatLng(start.latitude, start.longitude),
-      PointLatLng(destination.latitude, destination.longitude),
-      travelMode: TravelMode.transit,
-    );
-    if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-    }
-    PolylineId id = PolylineId('poly');
-    Polyline polyline = Polyline(
-      polylineId: id,
-      color: Colors.blue,
-      points: polylineCoordinates,
-      width: 5,
-    );
-    polylines[id] = polyline;
+  void iniPlatformState() async {
+    Map<String, double> mylocation;
   }
 }
