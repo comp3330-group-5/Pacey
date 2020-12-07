@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        // crossAxisAlignment: CrossAxisAlignment.baseline,
                         children: [
                           Text(
                             _totalDistance,
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                             ' km',
                             style: GoogleFonts.openSans(
                               textStyle: TextStyle(
-                                fontSize: 48,
+                                fontSize: 44,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.black87,
                               ),
