@@ -2,9 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:flutter/services.dart';
 
 class RoutesPage extends StatefulWidget {
   RoutesPage({Key key}) : super(key: key);
@@ -18,17 +15,6 @@ class _RoutesState extends State<RoutesPage> {
   Location _locationTracker = Location();
   List<Marker> myMarker = [];
   LatLng ini_postion = LatLng(37.42796133580664, -122.085749655962);
-  //Geting the current location:
-  Map<String, double> currentLocation = new Map();
-  StreamSubscription<Map<String, double>> locationSubcription;
-  Location location = new Location();
-  //setting the draw route.
-  Set<Polyline> _polylines = {};
-  List<LatLng> polylineCoordinates = [];
-  // which generates every polyline between start and finish
-  PolylinePoints polylinePoints = PolylinePoints();
-  //String googleAPIKey = “<YOUR_API_KEY>”;
-
   static final CameraPosition _initialPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
@@ -101,7 +87,9 @@ class _RoutesState extends State<RoutesPage> {
     //var location = await _locationTracker.getlocation();
     //updateMarker
   }
-  void iniPlatformState() async {
-    Map<String, double> mylocation;
+
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
