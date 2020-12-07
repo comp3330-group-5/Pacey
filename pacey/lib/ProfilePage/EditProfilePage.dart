@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pacey/Navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'ProfilePage.dart';
 
 class EditProfilePage extends StatefulWidget {
   EditProfilePage({Key key}) : super(key: key);
@@ -75,8 +78,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   FlatButton(
                     child: Text('Yes'),
                     onPressed: () {
-                      Navigator.of(context).pop();
                       Navigator.pop(context);
+                      Navigator.pop(context);
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => Navigation()));
                     },
                   ),
                   FlatButton(
