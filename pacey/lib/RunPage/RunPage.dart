@@ -145,7 +145,7 @@ class _RunPageState extends State<RunPage> {
             Map<String, dynamic> run = {
               DatabaseHelper.runDate: DateTime.now().toString(),
               DatabaseHelper.runDistance: '100',
-              DatabaseHelper.runTime: elapsedTime,
+              DatabaseHelper.runDuration: elapsedTime,
             };
             await dbHelper.insertRun(run);
 
