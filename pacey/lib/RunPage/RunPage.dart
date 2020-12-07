@@ -158,8 +158,9 @@ class _RunPageState extends State<RunPage> {
               DatabaseHelper.runDistance: 0.1,
               DatabaseHelper.runDuration: elapsedTime,
               DatabaseHelper.runSpeed:
-              NumberFormat('###.#').format(0.1 * 1000 * 60 * 60 / watch.elapsedMilliseconds),
-              DatabaseHelper.runConsumed: (100 * _weight * 1.036).toString()
+              NumberFormat('##0.#').format(0.1 * 1000 * 60 * 60 / watch.elapsedMilliseconds),
+              DatabaseHelper.runConsumed:
+              NumberFormat('##0.#').format(0.1 * _weight * 1.036)
             };
             await dbHelper.insertRun(run);
             Navigator.pop(
