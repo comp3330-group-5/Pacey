@@ -75,7 +75,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   FlatButton(
                     child: Text('Yes'),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Navigator.pop(context);
                       Navigator.pop(context);
                     },
                   ),
